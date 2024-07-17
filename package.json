@@ -1,0 +1,46 @@
+{
+  "name": "mangaclub-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@badrap/bar-of-progress": "^0.2.2",
+    "@types/node": "20.1.0",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
+    "@vercel/kv": "^0.1.1",
+    "artplayer": "^5.0.6",
+    "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "classnames": "^2.3.2",
+    "daisyui": "^2.51.6",
+    "framer-motion": "^10.12.8",
+    "hls.js": "^1.4.1",
+    "html-react-parser": "^3.0.16",
+    "next": "^13.4.13",
+    "postcss": "8.4.23",
+    "prettier": "^3.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.8.0",
+    "react-responsive-carousel": "^3.2.23",
+    "react-responsive-masonry": "^2.1.7",
+    "react-select": "^5.7.4",
+    "rss-parser": "^3.13.0",
+    "sharp": "^0.32.1",
+    "string-similarity": "^4.0.4",
+    "tailwindcss": "3.3.2",
+    "typescript": "5.0.4",
+    "url-join": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/react-responsive-masonry": "^2.1.0",
+    "@types/string-similarity": "^4.0.0"
+  }
+}
