@@ -58,7 +58,7 @@ jobs:
           rm /var/www/mangaclub-frontend/current
           ln -s "/var/www/mangaclub-frontend/releases/$RELEASE_ID" /var/www/mangaclub-frontend/current
           cd /var/www/mangaclub-frontend/current
-          pm2 restart ecosystem.config.cjs
+          pm2 restart ecosystem.config.cjs --silent
           pm2 save
           ls -dt /var/www/mangaclub-frontend/releases/* | tail -n +4 | xargs rm -rf
           EOF
