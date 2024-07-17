@@ -1,4 +1,4 @@
-import { CompactManga, Manga } from '@/@types';
+import { CompactManga, Manga } from '@/types';
 import urlJoin from 'url-join';
 
 export const useBackend = () => {

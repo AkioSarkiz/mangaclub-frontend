@@ -1,4 +1,4 @@
-import { CompactManga } from '@/@types';
+import { CompactManga } from '@/types';
 import Link from 'next/link';
 import React from 'react';
 

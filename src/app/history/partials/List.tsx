@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Card from '@/components/Card';
 import useLocalStorage from '@/hooks/useLocalStorage';
-import { CompactManga } from '@/@types';
+import { CompactManga } from '@/types';
 export default function List() {
   const { getWatched, delWatched } = useLocalStorage();
   const [mangas, setmangas] = useState<any | null>(null);

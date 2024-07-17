@@ -4,7 +4,7 @@ import { RxCross1 } from 'react-icons/rx';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { FaStar } from 'react-icons/fa';
-import { CompactManga } from '@/@types';
+import { CompactManga } from '@/types';
 import Link from 'next/link';
 
 type Props = {

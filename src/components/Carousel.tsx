@@ -1,12 +1,11 @@
 'use client';
-import { IAnime } from '@/@types/EnimeType';
 import Link from 'next/link';
 import React from 'react';
 import { Carousel as ReactCarousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 type CarouselProps = {
-  spotlightInfo: IAnime[];
+  spotlightInfo: any[];
 };
 
 function Carousel({ spotlightInfo }: CarouselProps) {

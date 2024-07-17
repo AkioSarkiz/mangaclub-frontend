@@ -5,7 +5,7 @@ import SearchCard from '@/components/SearchCard';
 import Loading from '@/components/LoadingSingle';
 import Link from 'next/link';
 import { useBackend } from '@/hooks/useBackend';
-import { CompactManga } from '@/@types';
+import { CompactManga } from '@/types';
 
 function Search() {
   const [searchInput, setSearch] = useState('');
