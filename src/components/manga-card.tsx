@@ -1,9 +1,6 @@
 'use client';
+
 import React from 'react';
-import { RxCross1 } from 'react-icons/rx';
-import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import { FaStar } from 'react-icons/fa';
 import { CompactManga } from '@/types';
 import Link from 'next/link';
 
@@ -13,33 +10,16 @@ type Props = {
 
 function Card({ manga }: Props) {
   return (
-    <motion.div
-      className='relative w-auto px-2 md:px-0 lg:w-[280px] h-[250px] smp:h-[290px] bigp:h-[350px] rounded-lg hover:cursor-pointer'
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1, transition: { delay: 0.05 } }}
-      whileHover={{ scale: 1.1 }}
-    >
-      <Link href={`/manga/${manga.id}`}>
-        <motion.div whileTap={{ scale: 0.9 }}>
-          <div className='flex flex-col space-y-5 bg-base-300 shadow-2xl relative'>
-            <img
-              src={manga.cover}
-              alt={manga.title}
-              className='w-full h-[250px] smp:h-[290px] bigp:h-[350px] object-cover rounded-xl'
-            />
-            <div className='absolute bottom-0 p-1 flex flex-col w-full bg-gradient-to-b from-transparent to-violet-800'>
-              <div className='uppercase absolute rounded p-1 right-0 bottom-7 flex flex-row text-xs gap-1 font-bold items-center justify-end text-slate-100 bg-gradient-to-r from-orange-600 to-yellow-400'>
-                <FaStar size={17} />
-                <div>new</div>
-              </div>
-              <p className='font-extrabold text-sm sm:text-base capitalize truncate text-center text-slate-100'>
-                {manga.title}
-              </p>
-            </div>
+    <Link href={`/manga/${manga.id}`}>
+      <div className='w-full max-w-[300px] rounded-lg overflow-hidden shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl'>
+        <div className='relative'>
+          <img src={manga.cover} alt='Manga Cover' width={300} height={400} className='w-full h-[400px] object-cover' />
+          <div className='absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent py-4 px-6'>
+            <h3 className='text-lg font-bold text-white truncate'>{manga.title}</h3>
           </div>
-        </motion.div>
-      </Link>
-    </motion.div>
+        </div>
+      </div>
+    </Link>
   );
 }
 

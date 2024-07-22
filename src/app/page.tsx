@@ -1,5 +1,4 @@
-import AdBlock from '@/components/AdBlock';
-import Card from '@/components/Card';
+import Card from '@/components/manga-card';
 import Carousel from '@/components/Carousel';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
