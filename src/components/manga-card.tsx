@@ -19,20 +19,8 @@ function Card({ manga }: Props) {
       whileInView={{ opacity: 1, transition: { delay: 0.05 } }}
       whileHover={{ scale: 1.1 }}
     >
-      {/* {hasRemoveBtn && (
-        <div
-          className='absolute right-5 top-5 bg-base-100 shadow-xl rounded-full p-2 text-white hover:bg-white hover:text-red-600 transition-all ease-in-out z-10'
-          onClick={delCb}
-        >
-          <RxCross1 size='15' />
-        </div>
-      )} */}
-
       <Link href={`/manga/${manga.id}`}>
-        <motion.div
-          whileTap={{ scale: 0.9 }}
-          // onClick={() => router.push(episodeId ? `/read/${id}/${additional}/${episodeId}` : `/info/${id}`)}
-        >
+        <motion.div whileTap={{ scale: 0.9 }}>
           <div className='flex flex-col space-y-5 bg-base-300 shadow-2xl relative'>
             <img
               src={manga.cover}
