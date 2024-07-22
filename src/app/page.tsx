@@ -1,5 +1,7 @@
 import Card from '@/components/Card';
 import Carousel from '@/components/Carousel';
+import { ThemeToggle } from '@/components/theme-toggle';
+import { Button } from '@/components/ui/button';
 import { useBackend } from '@/hooks/useBackend';
 
 export default async function Home() {

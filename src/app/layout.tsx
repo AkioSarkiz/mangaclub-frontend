@@ -1,8 +1,9 @@
 import './globals.css';
 import { Outfit } from 'next/font/google';
 import { Metadata } from 'next';
-import Header from '@/partials/Header';
+import Header from '@/partials/header';
 import { Footer } from '@/partials/Footer';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const fetchCache = 'force-no-store';
 
@@ -41,11 +42,14 @@ const outfit = Outfit({ weight: '400', subsets: ['latin'] });
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <html data-theme='night' lang='en' className={outfit.className}>
+      {/* suppressHydrationWarning because of next-themes */}
+      <html data-theme='night' lang='en' className={outfit.className} suppressHydrationWarning>
         <body>
-          <Header />
-          <div className='min-h-screen block'>{children}</div>
-          <Footer />
+          <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+            <Header />
+            <div className='min-h-screen block'>{children}</div>
+            <Footer />
+          </ThemeProvider>
         </body>
       </html>
     </>
