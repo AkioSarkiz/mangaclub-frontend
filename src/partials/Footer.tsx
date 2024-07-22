@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import { FaDiscord, FaGithub } from 'react-icons/fa';
+import { FaDiscord } from 'react-icons/fa';
 import React from 'react';
 import { nightTokyo } from '@/utils/fonts';
 
 export const Footer = () => {
   const DISCORD_INVITE_LINK = String(process.env.NEXT_PUBLIC_DISCORD_INVITE_LINK);
+  const APP_NAME = String(process.env.NEXT_PUBLIC_APP_NAME);
 
   return (
     <footer className='w-full bg-base-300 shadow-xl p-5 flex flex-col items-center space-y-5'>
@@ -26,10 +27,10 @@ export const Footer = () => {
         </a>
       </div>
       <p className='text-sm text-gray-300'>
-        Mangaclub does not store any files on our server, we only linked to the media which is hosted on 3rd party
+        {APP_NAME} does not store any files on our server, we only linked to the media which is hosted on 3rd party
         services.
       </p>
-      <p className='text-sm text-gray-300'>Copyright &copy; Mangaclub</p>
+      <p className='text-sm text-gray-300'>Copyright &copy; {APP_NAME}</p>
     </footer>
   );
 };

@@ -1,7 +1,4 @@
 import Card from '@/components/manga-card';
-import Carousel from '@/components/Carousel';
-import { ThemeToggle } from '@/components/theme-toggle';
-import { Button } from '@/components/ui/button';
 import { useBackend } from '@/hooks/useBackend';
 
 export default async function Home() {
@@ -15,7 +12,7 @@ export default async function Home() {
 
       <div className='flex justify-center'>
         <div className='bigp:m-10 mt-10 flex flex-col items-center justify-center'>
-          <p className='text-xl mb-10 uppercase font-bold text-violet-300 tracking-widest'>Recent Releases</p>
+          <p className='text-xl mb-10 uppercase font-bold dark:text-violet-300 tracking-widest'>Recent Releases</p>
 
           <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 mb-10'>
             {feed.map((manga: any) => (

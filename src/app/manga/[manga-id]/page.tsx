@@ -1,9 +1,10 @@
 import React from 'react';
 import useManga from '@/hooks/useManga';
 import { Metadata } from 'next';
-import ProviderList from '@/components/ProviderList';
+import { MangaChaptersList } from '@/components/ProviderList';
 import { useBackend } from '@/hooks/useBackend';
 import useLocalStorage from '@/hooks/useLocalStorage';
+import { Button } from '@/components/ui/button';
 
 type Props = {
   params: { 'manga-id': string };
@@ -14,7 +15,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 
   const { getManga } = useBackend();
-  const { setWatchedId } = useLocalStorage();
 
   const manga = await getManga(mangaId);
 
@@ -35,49 +35,61 @@ async function page({ params }: Props) {
   const manga = await getManga(mangaId);
 
   return (
-    <section className='block h-full bigp:w-3/4 mx-auto pt-4 flex-col items-center overflow-x-hidden md:flex-row md:items-start'>
-      <div className='flex flex-col bigp:flex-row bigp:space-x-8'>
-        <div className='flex justify-center'>
-          <img src={manga.cover} className='rounded object-cover bigp:ml-8 h-auto max-w-xs' />
+    <>
+      <div className='container'>
+        <div className='flex flex-col md:flex-row w-full items-center md:items-end gap-5 pt-12'>
+          <div className='shrink-0 w-[180px] h-[250px] rounded overflow-hidden'>
+            <img
+              alt='poster anime'
+              loading='lazy'
+              width='300'
+              height='300'
+              decoding='async'
+              data-nimg='1'
+              className='w-full h-full object-cover'
+              style={{ color: 'transparent' }}
+              src={manga.cover}
+            />
+          </div>
+          <div className='flex flex-col gap-4 items-center md:items-start justify-end w-full'>
+            <div className='flex flex-col gap-1 text-center md:text-start w-full'>
+              {manga.year && <h3 className='font-karla text-lg capitalize leading-none'>{manga.year}</h3>}
+              <h1 className='font-outfit font-extrabold text-2xl md:text-4xl line-clamp-2 text-white'>{manga.title}</h1>
+              <h2 className='font-karla line-clamp-1 text-sm md:text-lg md:pb-2 font-light text-white/70'></h2>
+              <div className='flex-wrap w-full justify-start md:pt-1 gap-4 hidden md:flex'>
+                {/* Show manga type */}
+                {manga.type && (
+                  <div
+                    className='dynamic-text rounded px-2 font-karla font-bold capitalize'
+                    style={{ backgroundColor: 'rgb(255, 255, 255)', color: 'rgb(0, 0, 0)' }}
+                  >
+                    {manga.type}
+                  </div>
+                )}
+                {manga?.genres?.map((genre: any) => (
+                  <div
+                    key={genre.id}
+                    className='dynamic-text rounded px-2 font-karla font-bold'
+                    style={{ backgroundColor: 'rgb(255, 255, 255)', color: 'rgb(0, 0, 0);' }}
+                  >
+                    {genre.name}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className='flex flex-col space-y-4 px-3 md:px-0 ml-0'>
-          <p className='text-2xl font-semibold mt-4'>{manga.title}</p>
-          <p className=''>{manga.title}</p>
-          <div className='flex flex-wrap gap-4'>
-            {manga?.genres?.map((genre: any) => (
-              <span key={genre.id} className='rounded-sm bg-zinc-500 mb-auto text-base p-[0_0.375rem]'>
-                {genre.name}
-              </span>
-            ))}
-          </div>
-          <p>{manga.description}</p>
-          <div className='gap-x-16 flex bigp:flex-row flex-wrap'>
-            {manga.rating && (
-              <div>
-                <p>Rate</p>
-                <p>{manga.rating}</p>
-              </div>
-            )}
-            {manga.year && (
-              <div>
-                <p>Release Date</p>
-                <p>{manga.year}</p>
-              </div>
-            )}
-            {manga.status && (
-              <div>
-                <p>Status</p>
-                <p className='capitalize'>{manga.status}</p>
-              </div>
-            )}
-          </div>
+        <div className='flex gap-2 mt-3'>
+          <Button>Read first chapter</Button>
         </div>
+
+        <div className='text-xl font-bold mt-8'>Description</div>
+        <p className='text-base my-4'>{manga.description}</p>
+
+        <MangaChaptersList chapters={manga.chapters} mangaId={mangaId} />
       </div>
-      <div className='flex flex-col w-full px-3 md:px-0'>
-        <ProviderList chapters={manga.chapters} mangaId={mangaId} />
-      </div>
-    </section>
+    </>
   );
 }
 
