@@ -5,8 +5,6 @@ import Header from '@/partials/header';
 import { Footer } from '@/partials/Footer';
 import { ThemeProvider } from '@/components/theme-provider';
 
-export const fetchCache = 'force-no-store';
-
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 const APP_DEFAULT_TITLE = `Read manga where you want | ${APP_NAME}`;
 const APP_DESCRIPTION = 'Read your favourite manga with ease and no ads';
