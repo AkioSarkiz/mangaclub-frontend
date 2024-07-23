@@ -8,7 +8,7 @@ export const Footer = () => {
   const APP_NAME = String(process.env.NEXT_PUBLIC_APP_NAME);
 
   return (
-    <footer className='w-full bg-base-300 shadow-xl p-5 flex flex-col items-center space-y-5 border-t-2 md:border-t-none'>
+    <footer className='w-full bg-base-300 shadow-xl p-5 flex flex-col items-center space-y-5 border-t-2 dark:border-t-0'>
       <Link href='/'>
         <Logo />
       </Link>
