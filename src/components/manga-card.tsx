@@ -13,14 +13,14 @@ function Card({ manga }: Props) {
   return (
     <Link href={`/manga/${manga.id}`}>
       <motion.div whileHover={{ scale: 1.1 }}>
-        <div className='w-full max-w-[300px] rounded-lg overflow-hidden shadow-lg dark:shadow-none'>
+        <div className='w-auto lg:max-w-[300px] rounded-lg overflow-hidden shadow-lg dark:shadow-none'>
           <div className='relative'>
             <img
               src={manga.cover}
               alt='Manga Cover'
               width={300}
               height={400}
-              className='w-full h-[400px] object-cover'
+              className='w-auto lg:w-full h-auto lg:h-[400px] object-cover'
             />
             <div className='absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent py-4 px-6'>
               <h3 className='text-lg font-bold text-white truncate'>{manga.title}</h3>

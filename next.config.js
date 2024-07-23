@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
+
+const backendUrl = new URL(String(process.env.NEXT_PUBLIC_BACKEND_URL))
+
 const nextConfig = {
   images: {
-    domains: ['https://img-proxy-moc9.onrender.com'],
+    remotePatterns: [
+      {
+        protocol: backendUrl.protocol.substr(0, backendUrl.protocol.length - 1),
+        hostname: backendUrl.hostname,
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

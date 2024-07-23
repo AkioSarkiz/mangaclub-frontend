@@ -12,13 +12,14 @@ export default async function Home() {
 
       <div className='flex justify-center'>
         <div className='bigp:m-10 mt-10 flex flex-col items-center justify-center'>
-          <p className='text-xl mb-10 uppercase font-bold dark:text-violet-300 tracking-widest'>Recent Releases</p>
+          <p className='text-xl mb-10 uppercase font-bold dark:text-violet-300 tracking-widest'>Recent Updates</p>
 
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 mb-10'>
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 mb-10 px-3'>
             {feed.map((manga: any) => (
               <Card manga={manga} key={manga.id} />
             ))}
           </div>
+          
           {/* <div className='flex flex-wrap justify-center gap-3 bigp:gap-6 bigp:mx-24'>
             {feed.map((manga: any, index: number) => (
               <Card manga={manga} key={manga.id} />

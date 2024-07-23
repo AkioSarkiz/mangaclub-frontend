@@ -2,14 +2,16 @@ import './globals.css';
 import { Outfit } from 'next/font/google';
 import { Metadata } from 'next';
 import Header from '@/partials/header';
-import { Footer } from '@/partials/Footer';
+import { Footer } from '@/partials/footer';
 import { ThemeProvider } from '@/components/theme-provider';
 
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 const APP_DEFAULT_TITLE = `Read manga where you want | ${APP_NAME}`;
 const APP_DESCRIPTION = 'Read your favourite manga with ease and no ads';
+const APP_URL = String(process.env.NUXT_PUBLIC_APP_URL);
 
 export const metadata: Metadata = {
+  metadataBase: new URL(APP_URL),
   applicationName: APP_NAME,
   title: APP_DEFAULT_TITLE,
   description: APP_DESCRIPTION,

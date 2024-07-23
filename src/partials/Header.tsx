@@ -1,9 +1,9 @@
-import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
+import { Sheet, SheetTrigger, SheetContent, SheetClose } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { nightTokyo } from '@/utils/fonts';
 import Search from '@/partials/Search';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { Logo } from '@/partials/logo';
 
 export default function Header() {
   const menuItems: { title: string; link: string }[] = [
@@ -13,39 +13,34 @@ export default function Header() {
   ];
 
   return (
-    <header className='flex h-20 w-full shrink-0 items-center px-4 md:px-6'>
+    <header className='flex h-20 w-full shrink-0 items-center px-4 md:px-6 border-b-2 dark:border-b-0 shadow-md dark:shadow-none'>
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant='outline' size='icon' className='lg:hidden'>
+          <Button variant='outline' size='icon' className='lg:hidden mr-2'>
             <MenuIcon className='h-6 w-6' />
             <span className='sr-only'>Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
         <SheetContent side='left'>
-          <Link
-            href='/'
-            className={`${nightTokyo.className} pt-2 btn btn-ghost font-extrabold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-purple-500 tracking-widest`}
-          >
-            ML
+          <Link href='/' className='flex items-center'>
+            <Logo />
           </Link>
           <div className='grid gap-2 py-6'>
             {menuItems.map((menuItem) => (
-              <Link
-                key={menuItem.title}
-                href={menuItem.link}
-                className='group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50'
-              >
-                {menuItem.title}
-              </Link>
+              <SheetClose asChild key={menuItem.title}>
+                <Link
+                  href={menuItem.link}
+                  className='group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50'
+                >
+                  {menuItem.title}
+                </Link>
+              </SheetClose>
             ))}
           </div>
         </SheetContent>
       </Sheet>
-      <Link
-        href='/'
-        className={`${nightTokyo.className} pt-2 btn btn-ghost font-extrabold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-purple-500 tracking-widest`}
-      >
-        ML
+      <Link href='/' className='flex items-center'>
+        <Logo />
       </Link>
 
       <div className='ml-8 flex justify-between flex-1'>
@@ -65,11 +60,6 @@ export default function Header() {
           <ThemeToggle />
         </div>
       </div>
-
-      {/* 
-      <div className='ml-auto'>
-        <Search />
-      </div> */}
     </header>
   );
 }

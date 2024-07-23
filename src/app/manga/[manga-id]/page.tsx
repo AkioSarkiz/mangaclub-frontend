@@ -5,6 +5,9 @@ import { MangaChaptersList } from '@/components/ProviderList';
 import { useBackend } from '@/hooks/useBackend';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
   params: { 'manga-id': string };
@@ -39,41 +42,29 @@ async function page({ params }: Props) {
       <div className='container'>
         <div className='flex flex-col md:flex-row w-full items-center md:items-end gap-5 pt-12'>
           <div className='shrink-0 w-[180px] h-[250px] rounded overflow-hidden'>
-            <img
-              alt='poster anime'
-              loading='lazy'
-              width='300'
-              height='300'
-              decoding='async'
-              data-nimg='1'
+            <Image
+              width={300}
+              height={300}
+              alt='poster manga'
               className='w-full h-full object-cover'
-              style={{ color: 'transparent' }}
               src={manga.cover}
             />
           </div>
           <div className='flex flex-col gap-4 items-center md:items-start justify-end w-full'>
             <div className='flex flex-col gap-1 text-center md:text-start w-full'>
               {manga.year && <h3 className='font-karla text-lg capitalize leading-none'>{manga.year}</h3>}
-              <h1 className='font-outfit font-extrabold text-2xl md:text-4xl line-clamp-2 text-white'>{manga.title}</h1>
-              <h2 className='font-karla line-clamp-1 text-sm md:text-lg md:pb-2 font-light text-white/70'></h2>
+              <h1 className='font-outfit font-extrabold text-2xl md:text-4xl line-clamp-2 dark:text-white'>
+                {manga.title}
+              </h1>
+              <h2 className='font-karla line-clamp-1 text-sm md:text-lg md:pb-2 font-light dark:text-white/70'></h2>
               <div className='flex-wrap w-full justify-start md:pt-1 gap-4 hidden md:flex'>
                 {/* Show manga type */}
-                {manga.type && (
-                  <div
-                    className='dynamic-text rounded px-2 font-karla font-bold capitalize'
-                    style={{ backgroundColor: 'rgb(255, 255, 255)', color: 'rgb(0, 0, 0)' }}
-                  >
-                    {manga.type}
-                  </div>
-                )}
+                {manga.type && <Badge className='capitalize'>{manga.type}</Badge>}
+                {/* Show manga genres */}
                 {manga?.genres?.map((genre: any) => (
-                  <div
-                    key={genre.id}
-                    className='dynamic-text rounded px-2 font-karla font-bold'
-                    style={{ backgroundColor: 'rgb(255, 255, 255)', color: 'rgb(0, 0, 0);' }}
-                  >
+                  <Badge className='capitalize' key={genre.id}>
                     {genre.name}
-                  </div>
+                  </Badge>
                 ))}
               </div>
             </div>
@@ -81,7 +72,9 @@ async function page({ params }: Props) {
         </div>
 
         <div className='flex gap-2 mt-3'>
-          <Button>Read first chapter</Button>
+          <Link href={`/manga/${mangaId}/chapter/${manga.chapters[manga.chapters.length - 1].id}`}>
+            <Button>Read first chapter</Button>
+          </Link>
         </div>
 
         <div className='text-xl font-bold mt-8'>Description</div>
