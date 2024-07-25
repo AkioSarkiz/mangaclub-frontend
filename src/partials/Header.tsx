@@ -1,7 +1,7 @@
 import { Sheet, SheetTrigger, SheetContent, SheetClose } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import Search from '@/components/new-search';
+import SearchBar from '@/components/search-bar';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Logo } from '@/partials/logo';
 
@@ -43,7 +43,7 @@ export default function Header() {
         <Logo />
       </Link>
 
-      <div className='ml-8 flex justify-between flex-1'>
+      <div className='ml-8 flex justify-end lg:justify-between flex-1'>
         <nav className='hidden lg:flex gap-6'>
           {menuItems.map((menuItem) => (
             <Link
@@ -55,8 +55,8 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <div className='flex flex-[.35] gap-4'>
-          <Search />
+        <div className='flex flex-1 md:flex-[.50] xl:flex-[.40]  gap-4'>
+          <SearchBar />
           <ThemeToggle />
         </div>
       </div>

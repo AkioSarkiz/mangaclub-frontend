@@ -9,7 +9,7 @@ import Link from 'next/link';
 import SearchCard from '@/components/SearchCard';
 import { Button } from '@/components/ui/button';
 
-export default function NewSearch() {
+export default function SearchBar() {
   const [searchInput, setSearch] = useState('');
   const [searchFilter, setSearchFilter] = useState<CompactManga[]>([]);
   const [loading, setLoading] = useState(false);
