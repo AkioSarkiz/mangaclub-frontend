@@ -1,7 +1,7 @@
 import { Sheet, SheetTrigger, SheetContent, SheetClose } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import Search from '@/partials/Search';
+import Search from '@/components/new-search';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Logo } from '@/partials/logo';
 
@@ -55,7 +55,7 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <div className='flex gap-4'>
+        <div className='flex flex-[.35] gap-4'>
           <Search />
           <ThemeToggle />
         </div>

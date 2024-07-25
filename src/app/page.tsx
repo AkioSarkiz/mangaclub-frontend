@@ -19,7 +19,7 @@ export default async function Home() {
               <Card manga={manga} key={manga.id} />
             ))}
           </div>
-          
+
           {/* <div className='flex flex-wrap justify-center gap-3 bigp:gap-6 bigp:mx-24'>
             {feed.map((manga: any, index: number) => (
               <Card manga={manga} key={manga.id} />
