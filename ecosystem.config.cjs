@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'mangaclub_frontend',
+      name: 'mangaclub-frontend',
       cwd: '/var/www/mangaclub-frontend/current',
       script: 'npm',
       args: 'run start',
