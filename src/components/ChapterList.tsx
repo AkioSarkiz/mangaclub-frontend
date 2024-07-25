@@ -32,9 +32,7 @@ export default async function ChapterList() {
             onClick={() =>
               router.push(
                 typeof window !== undefined
-                  ? `/read/${anilistId}/${localStorage.getItem(
-                      'provider',
-                    )}/${encodeURIComponent(e.id)}`
+                  ? `/read/${anilistId}/${localStorage.getItem('provider')}/${encodeURIComponent(e.id)}`
                   : '/',
               )
             }
