@@ -8,6 +8,7 @@ export interface CompactManga {
   title: string;
   cover: string;
   description?: string;
+  slug: string;
 }
 
 export interface MangaChapter {

@@ -1,3 +1,4 @@
+import Carousel from '@/components/Carousel';
 import Card from '@/components/manga-card';
 import { useBackend } from '@/hooks/useBackend';
 
@@ -8,7 +9,7 @@ export default async function Home() {
 
   return (
     <div>
-      {/* <Carousel spotlightInfo={feed} /> */}
+      <Carousel spotlightInfo={feed} />
 
       <div className='flex justify-center'>
         <div className='bigp:m-10 mt-10 flex flex-col items-center justify-center'>

@@ -11,7 +11,7 @@ type Props = {
 
 function Card({ manga }: Props) {
   return (
-    <Link href={`/manga/${manga.id}`}>
+    <Link href={`/manga/${manga.slug}`}>
       <motion.div whileHover={{ scale: 1.1 }}>
         <div className='w-auto lg:max-w-[300px] rounded-lg overflow-hidden shadow-lg dark:shadow-none'>
           <div className='relative'>
