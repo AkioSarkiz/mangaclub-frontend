@@ -2,7 +2,7 @@ import { Sheet, SheetTrigger, SheetContent, SheetClose } from '@/components/ui/s
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import SearchBar from '@/components/search-bar';
-import { ThemeToggle } from '@/components/theme-toggle';
+import { ThemeSwitcher } from '@/components/theme-switcher';
 import { Logo } from '@/partials/logo';
 
 export default function Header() {
@@ -57,7 +57,7 @@ export default function Header() {
         </nav>
         <div className='flex flex-1 md:flex-[.50] xl:flex-[.40]  gap-4'>
           <SearchBar />
-          <ThemeToggle />
+          <ThemeSwitcher />
         </div>
       </div>
     </header>

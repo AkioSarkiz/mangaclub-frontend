@@ -1,3 +1,4 @@
+// We are using framer-motion for animation here so we need to make component client side.
 'use client';
 
 import React from 'react';
@@ -9,7 +10,7 @@ type Props = {
   manga: CompactManga;
 };
 
-function Card({ manga }: Props) {
+function MangaCard({ manga }: Props) {
   return (
     <Link href={`/manga/${manga.slug}`}>
       <motion.div whileHover={{ scale: 1.1 }}>
@@ -32,4 +33,4 @@ function Card({ manga }: Props) {
   );
 }
 
-export default Card;
+export { MangaCard };

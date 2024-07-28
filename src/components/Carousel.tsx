@@ -1,4 +1,5 @@
 'use client';
+
 import Link from 'next/link';
 import React from 'react';
 import { Carousel as ReactCarousel } from 'react-responsive-carousel';
@@ -62,4 +63,4 @@ function CarouselSingle({ id, src, title, description }: CarouselSingleProps) {
   );
 }
 
-export default Carousel;
+export { Carousel };

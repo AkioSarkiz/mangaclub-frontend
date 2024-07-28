@@ -4,9 +4,9 @@ import { Input } from '@/components/ui/input';
 import { useBackend } from '@/hooks/useBackend';
 import { CompactManga } from '@/types';
 import { ComponentProps, useEffect, useRef, useState } from 'react';
-import Loading from '@/components/LoadingSingle';
+import Loading from '@/components/loading-single';
 import Link from 'next/link';
-import SearchCard from '@/components/SearchCard';
+import SearchCard from '@/components/search-card';
 import { Button } from '@/components/ui/button';
 
 export default function SearchBar() {
