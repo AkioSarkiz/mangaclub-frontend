@@ -1,16 +1,21 @@
+// CSS Imports
 import './globals.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import { Outfit } from 'next/font/google';
 import { Metadata } from 'next';
-import Header from '@/partials/Header';
-import { Footer } from '@/partials/Footer';
-
-export const fetchCache = 'force-no-store';
+import Header from '@/partials/header';
+import { Footer } from '@/partials/footer';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 const APP_DEFAULT_TITLE = `Read manga where you want | ${APP_NAME}`;
 const APP_DESCRIPTION = 'Read your favourite manga with ease and no ads';
+const APP_URL = String(process.env.NUXT_PUBLIC_APP_URL);
 
 export const metadata: Metadata = {
+  metadataBase: new URL(APP_URL),
   applicationName: APP_NAME,
   title: APP_DEFAULT_TITLE,
   description: APP_DESCRIPTION,
@@ -41,11 +46,14 @@ const outfit = Outfit({ weight: '400', subsets: ['latin'] });
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <html data-theme='night' lang='en' className={outfit.className}>
+      {/* suppressHydrationWarning because of next-themes */}
+      <html data-theme='night' lang='en' className={outfit.className} suppressHydrationWarning>
         <body>
-          <Header />
-          <div className='min-h-screen block'>{children}</div>
-          <Footer />
+          <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+            <Header />
+            <div className='min-h-screen block'>{children}</div>
+            <Footer />
+          </ThemeProvider>
         </body>
       </html>
     </>

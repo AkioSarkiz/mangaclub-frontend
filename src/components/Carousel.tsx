@@ -1,65 +1,81 @@
 'use client';
-import Link from 'next/link';
+
+import { CompactManga } from '@/types';
 import React from 'react';
-import { Carousel as ReactCarousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import Slider, { Settings } from 'react-slick';
+import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
+import { Card, CardContent } from '@/components/ui/card';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
-type CarouselProps = {
-  spotlightInfo: any[];
-};
+interface CarouselProps {
+  manga: CompactManga[];
+}
 
-function Carousel({ spotlightInfo }: CarouselProps) {
+function NextArrow(props: React.HTMLProps<SVGElement>) {
+  const { className, style, onClick } = props;
+
+  return <MdNavigateNext style={style} className={className} color='black' size={40} onClick={onClick} />;
+}
+
+function PrevArrow(props: React.HTMLProps<SVGElement>) {
+  const { className, style, onClick } = props;
+
+  return <MdNavigateBefore style={style} className={className} color='black' size={40} onClick={onClick} />;
+}
+
+function MangaBanner({ manga }: { manga: CompactManga }) {
   return (
-    <ReactCarousel
-      autoPlay
-      showThumbs={false}
-      infiniteLoop
-      dynamicHeight
-      stopOnHover
-      showIndicators={false}
-      showStatus={false}
-    >
-      {spotlightInfo.map((manga: any, index: number) => (
-        <CarouselSingle
-          key={manga.id}
-          id={manga.id}
-          src={manga.cover}
-          title={manga.title}
-          description={manga.description}
-        />
-      ))}
-    </ReactCarousel>
+    <Card className='rounded-md'>
+      <div className='grid grid-cols-1 md:grid-cols-4 gap-1'>
+        <div className='col-span-2 xl:col-span-1 mx-auto md:mx-0'>
+          <Image width={300} height={300} alt='poster manga' className='object-cover rounded-l-md' src={manga.cover} />
+        </div>
+        <div className='col-span-2 xl:col-span-3'>
+          <CardContent className='h-full'>
+            <div className='flex flex-col justify-between h-full'>
+              <div>
+                <h4 className='text-xl font-bold text-primary my-5'>{manga.title}</h4>
+                <p className='line-clamp-5'>{manga.description}</p>
+              </div>
+              <div className='mt-4 xl:mt-0'>
+                <Link href={`/manga/${manga.slug}`}>
+                  <Button>Read now</Button>
+                </Link>
+              </div>
+            </div>
+          </CardContent>
+        </div>
+      </div>
+    </Card>
   );
 }
 
-type CarouselSingleProps = {
-  id: string;
-  src: string;
-  title: string;
-  description: string;
-};
+function Carousel(props: CarouselProps) {
+  const settings: Settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplaySpeed: 10_000,
+    autoplay: true,
 
-function CarouselSingle({ id, src, title, description }: CarouselSingleProps) {
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+
   return (
-    <div id={`slide${id}`} className='relative w-full h-[300px] bigp:h-[450px]'>
-      <img src={src} className='w-full h-full object-cover opacity-30' />
-      <div className='absolute flex flex-col text-start items-start space-y-5 bigp:left-20 left-7 top-4 bigp:top-1/5 w-3/4 bigp:w-2/3 h-4/5 overflow-hidden'>
-        <div className='flex flex-row gap-3'>
-          <div className='text-xl bigp:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-purple-500'>
-            {title}
+    <div className='slider-container container'>
+      <Slider {...settings}>
+        {props.manga.map((manga) => (
+          <div key={manga.id}>
+            <MangaBanner manga={manga} />
           </div>
-        </div>
-        <div
-          className='font-bold text-base bigp:text-md leading-relaxed line-clamp-6'
-          dangerouslySetInnerHTML={{ __html: description }}
-        ></div>
-
-        <Link href={`/info/${encodeURIComponent(id)}`} className='btn btn-sm btn-outline bigp:btn-md'>
-          Read Now
-        </Link>
-      </div>
+        ))}
+      </Slider>
     </div>
   );
 }
 
-export default Carousel;
+export { Carousel };

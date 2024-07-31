@@ -21,13 +21,7 @@ export default function useLocalStorage() {
     }
     return null;
   }
-  function setWatchedId({
-    anislistId,
-    title,
-    image,
-    sourceId,
-    chapterId,
-  }: any) {
+  function setWatchedId({ anislistId, title, image, sourceId, chapterId }: any) {
     if (typeof window !== 'undefined') {
       let watched = localStorage.getItem('watched');
       if (watched) {

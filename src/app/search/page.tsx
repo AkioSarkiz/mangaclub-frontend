@@ -1,7 +1,7 @@
 import React from 'react';
 import { redirect } from 'next/navigation';
-import Card from '@/components/Card';
 import { useBackend } from '@/hooks/useBackend';
+import { MangaCard } from '@/components/manga-card';
 
 async function page({ searchParams }: any) {
   const { search } = useBackend();
@@ -18,7 +18,7 @@ async function page({ searchParams }: any) {
       </p>
       <div className='mt-10 flex flex-wrap justify-between bigp:justify-start xl:gap-8 bigp:gap-6 gap-3'>
         {data.items.map((manga: any) => (
-          <Card manga={manga} key={manga.id} />
+          <MangaCard manga={manga} key={manga.id} />
         ))}
       </div>
     </div>

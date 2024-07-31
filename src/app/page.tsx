@@ -1,47 +1,51 @@
-import Card from '@/components/Card';
-import Carousel from '@/components/Carousel';
+import { MangaCard, MangaGrid } from '@/components/manga-card';
+import { Carousel } from '@/components/carousel';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useBackend } from '@/hooks/useBackend';
+import Link from 'next/link';
+
+function PrettyHeader(props: React.PropsWithChildren) {
+  return <div className='text-3xl mb-10 font-extrabold dark:text-violet-300 tracking-widest'>{props.children}</div>;
+}
 
 export default async function Home() {
   const { getFeed } = useBackend();
 
-  const feed = await getFeed();
+  const feed = await getFeed({ includeDescription: true });
 
   return (
     <div>
-      {/* <Carousel spotlightInfo={feed} /> */}
+      <div className='mt-10'>
+        <div className='text-center'>
+          <PrettyHeader>Popular manga</PrettyHeader>
+        </div>
+        <Carousel manga={feed} />
+      </div>
 
       <div className='flex justify-center'>
         <div className='bigp:m-10 mt-10 flex flex-col items-center justify-center'>
-          <p className='text-xl mb-10 uppercase font-bold text-violet-300 tracking-widest'>Recent Releases</p>
+          <PrettyHeader>Recent Updates</PrettyHeader>
 
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6'>
+          <MangaGrid>
             {feed.map((manga: any) => (
-              <Card manga={manga} key={manga.id} />
+              <MangaCard manga={manga} key={manga.id} />
             ))}
-          </div>
-          {/* <div className='flex flex-wrap justify-center gap-3 bigp:gap-6 bigp:mx-24'>
-            {feed.map((manga: any, index: number) => (
-              <Card manga={manga} key={manga.id} />
-            ))}
-          </div> */}
-          {/* <p
-            className={`text-xl mt-20 bigp:mt-30 mb-10 uppercase font-bold text-violet-300 tracking-widest`}
-          >
-            Popular Release
-          </p>
-          <div className='flex flex-wrap justify-center gap-3 bigp:mx-24 bigp:gap-6'>
-            {feed.map((manga: any, index: number) => (
-              <Card
-                id={manga.id}
-                key={index}
-                title={manga.title.romaji}
-                src={manga.image}
-                additional={manga.rating}
-              />
-            ))}
-          </div> */}
+          </MangaGrid>
         </div>
+      </div>
+
+      <div className='container'>
+        <Card className='mb-10'>
+          <div className='text-center my-8'>
+            <div className='text-lg font-bold my-4'>
+              Can't find the manga you're looking for? Our catalog contains thousands of titles.
+            </div>
+            <Link href='/browse'>
+              <Button>Explore Our Catalog</Button>
+            </Link>
+          </div>
+        </Card>
       </div>
     </div>
   );

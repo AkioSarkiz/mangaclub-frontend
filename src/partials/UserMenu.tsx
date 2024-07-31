@@ -9,10 +9,7 @@ function UserMenu() {
           <Image src='/logo/image.png' alt='logo' width='52' height='52' />
         </div>
       </label>
-      <ul
-        tabIndex={0}
-        className='mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52'
-      >
+      <ul tabIndex={0} className='mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52'>
         <li>
           <p className='justify-between'>
             Profile
