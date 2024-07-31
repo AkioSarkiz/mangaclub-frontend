@@ -18,15 +18,15 @@ interface Props {
 
 export function CatalogPagination({ catalogPage }: Props) {
   const [links, setLinks] = useState<{
-    currentPage: string | undefined;
-    nextPage: string | undefined;
-    prevPage: string | undefined;
-    maxPage: string | undefined;
+    currentPage: string | null;
+    nextPage: string | null;
+    prevPage: string | null;
+    maxPage: string | null;
   }>({
-    currentPage: undefined,
-    nextPage: undefined,
-    prevPage: undefined,
-    maxPage: undefined,
+    currentPage: null,
+    nextPage: null,
+    prevPage: null,
+    maxPage: null,
   });
 
   useEffect(() => {

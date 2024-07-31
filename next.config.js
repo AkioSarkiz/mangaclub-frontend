@@ -1,7 +1,6 @@
-/** @type {import('next').NextConfig} */
-
 const backendUrl = new URL(String(process.env.NEXT_PUBLIC_BACKEND_URL))
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -25,6 +24,9 @@ const nextConfig = {
       },
     ],
   },
+
+  crossOrigin: 'anonymous',
+  poweredByHeader: false,
 };
 
 module.exports = nextConfig;
