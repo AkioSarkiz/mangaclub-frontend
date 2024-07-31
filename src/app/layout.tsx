@@ -5,8 +5,8 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import { Outfit } from 'next/font/google';
 import { Metadata } from 'next';
-import { Header } from '@/partials/header';
-import { Footer } from '@/partials/footer';
+import { Header } from '../partials/header';
+import { Footer } from '../partials/footer';
 import { ThemeProvider } from '@/components/theme-provider';
 
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;

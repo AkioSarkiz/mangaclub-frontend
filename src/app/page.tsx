@@ -1,8 +1,8 @@
 import { MangaCard, MangaGrid } from '@/components/manga-card';
-import { Carousel } from '@/components/carousel';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { useBackend } from '@/hooks/useBackend';
+import { Carousel } from '../components/carousel';
+import { Button } from '../components/ui/button';
+import { Card } from '../components/ui/card';
+import { useBackend } from '../hooks/useBackend';
 import Link from 'next/link';
 
 function PrettyHeader(props: React.PropsWithChildren) {
