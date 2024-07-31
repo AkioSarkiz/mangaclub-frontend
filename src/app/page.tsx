@@ -4,10 +4,15 @@ import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { useBackend } from '../hooks/useBackend';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
 function PrettyHeader(props: React.PropsWithChildren) {
   return <div className='text-3xl mb-10 font-extrabold dark:text-violet-300 tracking-widest'>{props.children}</div>;
 }
+
+export const metadata: Metadata = {
+  title: 'Home page | ' + process.env.NEXT_PUBLIC_APP_NAME,
+};
 
 export default async function Home() {
   const { getFeed } = useBackend();
