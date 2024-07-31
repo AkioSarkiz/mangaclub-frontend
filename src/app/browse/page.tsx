@@ -1,15 +1,6 @@
 import { CatalogPagination } from '@/app/browse/partials/pagination';
 import { SearchInput } from '@/app/browse/partials/search';
 import { MangaCard, MangaGrid } from '@/components/manga-card';
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from '@/components/ui/pagination';
 import { useBackend } from '@/hooks/useBackend';
 import { CompactManga } from '@/types';
 import { Metadata } from 'next';
