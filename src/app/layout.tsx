@@ -1,4 +1,8 @@
+// CSS Imports
 import './globals.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import { Outfit } from 'next/font/google';
 import { Metadata } from 'next';
 import Header from '@/partials/header';

@@ -1,9 +1,16 @@
 import { CompactManga, Manga } from '@/types';
 import urlJoin from 'url-join';
 
+interface GetFeedArgs {
+  includeDescription?: boolean;
+}
+
 export const useBackend = () => {
-  const getFeed = async (): Promise<CompactManga[]> => {
-    const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), '/manga/feed');
+  const getFeed = async (args: GetFeedArgs): Promise<CompactManga[]> => {
+    const url = urlJoin(
+      String(process.env.NEXT_PUBLIC_BACKEND_URL),
+      `/manga/feed?${args.includeDescription ? 'description=1' : ''}`,
+    );
     const response = await fetch(url);
 
     return response.json();

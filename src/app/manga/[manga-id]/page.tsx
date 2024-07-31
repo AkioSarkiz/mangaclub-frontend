@@ -1,9 +1,7 @@
 import React from 'react';
-import useManga from '@/hooks/useManga';
 import { Metadata } from 'next';
 import { MangaChaptersList } from '@/components/manga-chapter-list';
 import { useBackend } from '@/hooks/useBackend';
-import useLocalStorage from '@/hooks/useLocalStorage';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';

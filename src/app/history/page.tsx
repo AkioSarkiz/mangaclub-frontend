@@ -1,5 +1,5 @@
 import React from 'react';
-import List from './partials/List';
+import List from './partials/list';
 
 async function page() {
   return (

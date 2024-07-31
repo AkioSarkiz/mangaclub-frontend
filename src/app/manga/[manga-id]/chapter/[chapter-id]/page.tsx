@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import SideBar from './partials/SideBar';
-import Display from './partials/Display';
+import SideBar from './partials/side-bar';
+import Display from './partials/display';
 import { useBackend } from '@/hooks/useBackend';
 
 type Props = {

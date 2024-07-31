@@ -9,6 +9,7 @@ export default function Header() {
   const menuItems: { title: string; link: string }[] = [
     { title: 'Home', link: '/' },
     { title: 'History', link: '/history' },
+    { title: 'Catalog', link: '/browse' },
     { title: 'Fallow', link: '/fallowed' },
   ];
 
