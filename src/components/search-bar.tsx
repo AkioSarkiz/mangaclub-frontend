@@ -16,7 +16,7 @@ export default function SearchBar() {
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { search } = useBackend();
+  const { getCatalogPage } = useBackend();
 
   useEffect(() => {
     if (searchInput === '') {
@@ -25,7 +25,7 @@ export default function SearchBar() {
 
     const delayDebounceFn = setTimeout(async () => {
       setLoading(true);
-      const data = await search(searchInput);
+      const data = await getCatalogPage({ query: searchInput });
       setSearchFilter(data.items.slice(0, 4));
       setLoading(false);
     }, 1000);
@@ -72,7 +72,7 @@ export default function SearchBar() {
                 <SearchCard manga={manga} key={manga.id} onClick={handleSearchCallback} />
               ))}
               <div className='flex items-center justify-center'>
-                <Link href={`/search?q=${encodeURIComponent(searchInput)}`} onClick={handleSearchCallback}>
+                <Link href={`/browse?q=${encodeURIComponent(searchInput)}`} onClick={handleSearchCallback}>
                   <Button variant={'link'}>More ...</Button>
                 </Link>
               </div>

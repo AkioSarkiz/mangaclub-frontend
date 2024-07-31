@@ -68,3 +68,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+.slick-next {
+  width: 40px !important;
+  height: 40px !important;
+  right: -45px !important;
+}
+
+.slick-prev {
+  width: 40px !important;
+  height: 40px !important;
+  left: -45px !important;
+}

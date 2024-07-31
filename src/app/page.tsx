@@ -1,6 +1,5 @@
+import { MangaCard, MangaGrid } from '@/components/manga-card';
 import { Carousel } from '@/components/carousel';
-import { MangaCard } from '@/components/manga-card';
-import { NextCarousel } from '@/components/next-carousel';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useBackend } from '@/hooks/useBackend';
@@ -21,23 +20,23 @@ export default async function Home() {
         <div className='text-center'>
           <PrettyHeader>Popular manga</PrettyHeader>
         </div>
-        <NextCarousel manga={feed} />
+        <Carousel manga={feed} />
       </div>
 
       <div className='flex justify-center'>
         <div className='bigp:m-10 mt-10 flex flex-col items-center justify-center'>
           <PrettyHeader>Recent Updates</PrettyHeader>
 
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 mb-10 px-3'>
+          <MangaGrid>
             {feed.map((manga: any) => (
               <MangaCard manga={manga} key={manga.id} />
             ))}
-          </div>
+          </MangaGrid>
         </div>
       </div>
 
       <div className='container'>
-        <Card>
+        <Card className='mb-10'>
           <div className='text-center my-8'>
             <div className='text-lg font-bold my-4'>
               Can't find the manga you're looking for? Our catalog contains thousands of titles.

@@ -10,6 +10,10 @@ type Props = {
   manga: CompactManga;
 };
 
+function MangaGrid({ children }: React.PropsWithChildren) {
+  return <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 mb-10 px-3'>{children}</div>;
+}
+
 function BaseMangaCard({ manga }: Props) {
   return (
     <div className='w-auto lg:max-w-[300px] rounded-lg overflow-hidden shadow-lg dark:shadow-none'>
@@ -39,4 +43,4 @@ function MangaCard({ manga }: Props) {
   );
 }
 
-export { MangaCard };
+export { MangaCard, MangaGrid };

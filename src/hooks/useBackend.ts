@@ -5,6 +5,22 @@ interface GetFeedArgs {
   includeDescription?: boolean;
 }
 
+interface CatalogArgs {
+  query?: string;
+  page?: number;
+}
+
+export interface CatalogPageResponse {
+  items: CompactManga[];
+  meta: {
+    total: number;
+    currentPage: number;
+    maxPage: number;
+    prevPage: number | null;
+    nextPage: number | null;
+  };
+}
+
 export const useBackend = () => {
   const getFeed = async (args: GetFeedArgs): Promise<CompactManga[]> => {
     const url = urlJoin(
@@ -24,8 +40,24 @@ export const useBackend = () => {
     return manga;
   };
 
-  const search = async (query: string): Promise<{ items: CompactManga[] }> => {
-    const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), `/manga/catalog?q=${query}`);
+  const getCatalogPage = async ({ query, page }: CatalogArgs): Promise<CatalogPageResponse> => {
+    const searchParams = new URLSearchParams();
+
+    if (query) {
+      searchParams.append('q', query);
+    }
+
+    if (page) {
+      searchParams.append('p', String(page));
+    }
+
+    const searchParamsString = searchParams.toString();
+
+    const url = urlJoin(
+      String(process.env.NEXT_PUBLIC_BACKEND_URL),
+      `/manga${searchParamsString ? '?' + searchParamsString : ''}`,
+    );
+
     const response = await fetch(url);
 
     return response.json();
@@ -41,7 +73,7 @@ export const useBackend = () => {
   return {
     getFeed,
     getManga,
-    search,
+    getCatalogPage,
     getChapterDetails,
   };
 };
