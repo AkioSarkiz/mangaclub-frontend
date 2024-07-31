@@ -5,7 +5,7 @@ import SearchBar from '@/components/search-bar';
 import { ThemeSwitcher } from '@/components/theme-switcher';
 import { Logo } from '@/partials/logo';
 
-export default function Header() {
+export function Header() {
   const menuItems: { title: string; link: string }[] = [
     { title: 'Home', link: '/' },
     { title: 'History', link: '/history' },
