@@ -27,7 +27,7 @@ export const useBackend = () => {
       String(process.env.NEXT_PUBLIC_BACKEND_URL),
       `/manga/feed?${args.includeDescription ? 'description=1' : ''}`,
     );
-    const response = await fetch(url);
+    const response = await fetch(url, { cache: 'no-store' });
 
     return response.json();
   };
@@ -58,7 +58,7 @@ export const useBackend = () => {
       `/manga${searchParamsString ? '?' + searchParamsString : ''}`,
     );
 
-    const response = await fetch(url);
+    const response = await fetch(url, { cache: 'no-store' });
 
     return response.json();
   };
