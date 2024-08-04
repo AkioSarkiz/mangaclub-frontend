@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
     throw new Error('NEXT_PUBLIC_BACKEND_URL is not defined');
   }
 
-  const sitemapUrl = urlJoin(process.env.NEXT_PUBLIC_BACKEND_URL, '/sitemap.xml');
+  const sitemapUrl = urlJoin(process.env.NEXT_PUBLIC_BACKEND_URL, '/sitemap-index.xml');
 
   return {
     rules: {
