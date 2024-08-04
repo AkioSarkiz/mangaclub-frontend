@@ -12,7 +12,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 const APP_DEFAULT_TITLE = `Read manga where you want | ${APP_NAME}`;
 const APP_DESCRIPTION = 'Read your favourite manga with ease and no ads';
-const APP_URL = String(process.env.NUXT_PUBLIC_APP_URL);
+const APP_URL = String(process.env.NEXT_PUBLIC_APP_URL);
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
