@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import SideBar from './partials/side-bar';
 import Display from './partials/display';
 import { useBackend } from '@/hooks/useBackend';
+import { notFound } from 'next/navigation';
 
 type Props = {
   params: {
@@ -29,6 +30,10 @@ async function Page({ params }: Props) {
   const { getChapterDetails } = useBackend();
 
   const { frames } = await getChapterDetails(mangaId, chapterId);
+
+  if (!frames) {
+    notFound();
+  }
 
   return (
     <div className='flex w-full overflow-auto'>

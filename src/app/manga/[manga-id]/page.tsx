@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 type Props = {
   params: { 'manga-id': string };
@@ -20,10 +21,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const manga = await getManga(mangaId);
 
   return {
-    title: `${manga.title} | ${APP_NAME}`,
+    title: `${manga?.title || 'Not found'} | ${APP_NAME}`,
     openGraph: {
       title: `Read manga free and simple at ${APP_NAME}`,
-      images: [manga.cover],
+      ...(manga ? { images: [manga.cover] } : {}),
     },
   };
 }
@@ -34,6 +35,10 @@ async function page({ params }: Props) {
   const { getManga } = useBackend();
 
   const manga = await getManga(mangaId);
+
+  if (!manga) {
+    notFound();
+  }
 
   return (
     <>
