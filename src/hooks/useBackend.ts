@@ -72,7 +72,7 @@ export const useBackend = () => {
 
   const getChart = async () => {
     const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), '/manga/chart');
-    const response = await fetch(url);
+    const response = await fetch(url, { cache: 'no-store' });
 
     return await response.json();
   };
