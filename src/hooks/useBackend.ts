@@ -70,10 +70,18 @@ export const useBackend = () => {
     return response.json();
   };
 
+  const getChart = async () => {
+    const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), '/manga/chart');
+    const response = await fetch(url);
+
+    return await response.json();
+  };
+
   return {
     getFeed,
     getManga,
     getCatalogPage,
     getChapterDetails,
+    getChart,
   };
 };

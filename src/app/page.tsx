@@ -19,8 +19,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const { getFeed } = useBackend();
+  const { getFeed, getChart } = useBackend();
 
+  const chart = await getChart();
   const feed = await getFeed({ includeDescription: true });
 
   return (
@@ -29,7 +30,7 @@ export default async function Home() {
         <div className='text-center'>
           <PrettyHeader>Popular manga</PrettyHeader>
         </div>
-        <Carousel manga={feed} />
+        <Carousel manga={chart} />
       </div>
 
       <div className='flex justify-center'>
