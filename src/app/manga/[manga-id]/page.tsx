@@ -73,16 +73,14 @@ async function page({ params }: Props) {
             </div>
           </div>
         </div>
-
+        (manga.chapters.length &&
         <div className='flex gap-2 mt-3'>
           <Link href={`/manga/${mangaId}/chapter/${manga.chapters[manga.chapters.length - 1].id}`}>
             <Button>Read first chapter</Button>
           </Link>
         </div>
-
-        <div className='text-xl font-bold mt-8'>Description</div>
+        )<div className='text-xl font-bold mt-8'>Description</div>
         <p className='text-base my-4'>{manga.description}</p>
-
         <MangaChaptersList chapters={manga.chapters} mangaId={mangaId} />
       </div>
     </>
