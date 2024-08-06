@@ -27,11 +27,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `Read manga free and simple at ${APP_NAME}`,
       ...(manga ? { images: [manga.cover] } : {}),
     },
+    alternates: {
+      canonical: `https://${process.env.NEXT_PUBLIC_APP_URL}/manga/${mangaId}`,
+    },
   };
 }
 
 async function page({ params }: Props) {
-  const appUrl = new URL(String(process.env.NEXT_PUBLIC_APP_URL));
   const mangaId = params['manga-id'];
 
   const { getManga } = useBackend();
@@ -44,10 +46,6 @@ async function page({ params }: Props) {
 
   return (
     <>
-      <Head>
-        <link rel='canonical' href={`https://${appUrl.host}/manga/${mangaId}`} key='canonical' />
-      </Head>
-
       <div className='container'>
         <div className='flex flex-col md:flex-row w-full items-center md:items-end gap-5 pt-12'>
           <div className='shrink-0 w-[180px] h-[250px] rounded overflow-hidden'>
