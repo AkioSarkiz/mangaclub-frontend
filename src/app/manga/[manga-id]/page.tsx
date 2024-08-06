@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import Head from 'next/head';
 
 type Props = {
   params: { 'manga-id': string };
@@ -30,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 async function page({ params }: Props) {
+  const appUrl = new URL(String(process.env.NEXT_PUBLIC_APP_URL));
   const mangaId = params['manga-id'];
 
   const { getManga } = useBackend();
@@ -42,6 +44,10 @@ async function page({ params }: Props) {
 
   return (
     <>
+      <Head>
+        <link rel='canonical' href={`https://${appUrl.host}/manga/${mangaId}`} key='canonical' />
+      </Head>
+
       <div className='container'>
         <div className='flex flex-col md:flex-row w-full items-center md:items-end gap-5 pt-12'>
           <div className='shrink-0 w-[180px] h-[250px] rounded overflow-hidden'>
