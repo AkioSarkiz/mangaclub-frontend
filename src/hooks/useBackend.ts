@@ -37,6 +37,9 @@ export const useBackend = () => {
     const response = await fetch(url);
     const { manga } = await response.json();
 
+    // sort chapters
+    manga.chapters = manga.chapters.sort((a: any, b: any) => a.index - b.index);
+
     return manga;
   };
 
