@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const metadata = {
   title: `DMCA | ${process.env.NEXT_PUBLIC_APP_NAME}`,
 };
