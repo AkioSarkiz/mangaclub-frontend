@@ -8,6 +8,7 @@ import { Metadata } from 'next';
 import { Header } from '@/partials/header';
 import { Footer } from '@/partials/footer';
 import { ThemeProvider } from '@/components/theme-provider';
+import NextTopLoader from 'nextjs-toploader';
 
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 const APP_DEFAULT_TITLE = `Read manga where you want | ${APP_NAME}`;
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       {/* suppressHydrationWarning because of next-themes */}
       <html data-theme='night' lang='en' className={outfit.className} suppressHydrationWarning>
         <body>
+          <NextTopLoader color='red' />
           <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
             <Header />
             <div className='min-h-screen block'>{children}</div>

@@ -7,7 +7,6 @@ import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Head from 'next/head';
 
 type Props = {
   params: { 'manga-id': string };
