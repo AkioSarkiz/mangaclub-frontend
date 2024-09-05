@@ -2,7 +2,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
-import classNames from 'classnames';
 import { FaBackward, FaForward } from 'react-icons/fa';
 
 const transition = [0.33, 1, 0.68, 1];
