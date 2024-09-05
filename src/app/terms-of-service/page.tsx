@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const metadata = {
   title: `Terms of Service | ${process.env.NEXT_PUBLIC_APP_NAME}`,
 };
