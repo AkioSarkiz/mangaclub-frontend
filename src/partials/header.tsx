@@ -4,8 +4,17 @@ import Link from 'next/link';
 import SearchBar from '@/components/search-bar';
 import { ThemeSwitcher } from '@/components/theme-switcher';
 import { Logo } from '@/partials/logo';
+import { cookies } from 'next/headers';
+import { useBackend } from '@/hooks/useBackend';
+import { SignOut } from '@/partials/signout';
+import SignIn from '@/partials/signin';
 
-export function Header() {
+export async function Header() {
+  const cookiesStore = cookies();
+
+  const { getCurrentUser } = useBackend(cookiesStore);
+  const currentUser = await getCurrentUser();
+
   const menuItems: { title: string; link: string }[] = [
     { title: 'Home', link: '/' },
     { title: 'History', link: '/history' },
@@ -15,6 +24,7 @@ export function Header() {
 
   return (
     <header className='flex h-20 w-full shrink-0 items-center px-4 md:px-6 border-b-2 dark:border-b-0 shadow-md dark:shadow-none'>
+      {/* Drawer */}
       <Sheet>
         <SheetTrigger asChild>
           <Button variant='outline' size='icon' className='lg:hidden mr-2'>
@@ -27,6 +37,7 @@ export function Header() {
             <Logo />
           </Link>
           <div className='grid gap-2 py-6'>
+            <div>{!currentUser ? <SignIn /> : <SignOut />}</div>
             {menuItems.map((menuItem) => (
               <SheetClose asChild key={menuItem.title}>
                 <Link
@@ -40,6 +51,8 @@ export function Header() {
           </div>
         </SheetContent>
       </Sheet>
+      {/* ./Drawer */}
+
       <Link href='/' className='flex items-center'>
         <Logo />
       </Link>
@@ -59,6 +72,7 @@ export function Header() {
         <div className='flex flex-1 md:flex-[.50] xl:flex-[.40]  gap-4'>
           <SearchBar />
           <ThemeSwitcher />
+          <div className='hidden lg:block'>{!currentUser ? <SignIn /> : <SignOut />}</div>
         </div>
       </div>
     </header>

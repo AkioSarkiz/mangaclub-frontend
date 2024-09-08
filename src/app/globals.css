@@ -80,3 +80,7 @@
   height: 40px !important;
   left: -45px !important;
 }
+
+html {
+  overflow-wrap: break-word;
+}

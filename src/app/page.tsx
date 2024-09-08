@@ -5,6 +5,7 @@ import { Card } from '../components/ui/card';
 import { useBackend } from '../hooks/useBackend';
 import Link from 'next/link';
 import { Metadata } from 'next';
+import { cookies } from 'next/headers';
 
 function PrettyHeader(props: React.PropsWithChildren) {
   return <div className='text-3xl mb-10 font-extrabold dark:text-violet-300 tracking-widest'>{props.children}</div>;
@@ -19,7 +20,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const { getFeed, getChart } = useBackend();
+  const cookiesStorage = cookies();
+
+  const { getFeed, getChart } = useBackend(cookiesStorage);
 
   const chart = await getChart();
   const feed = await getFeed({ includeDescription: true });

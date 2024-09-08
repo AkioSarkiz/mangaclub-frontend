@@ -9,6 +9,7 @@ import { Header } from '@/partials/header';
 import { Footer } from '@/partials/footer';
 import { ThemeProvider } from '@/components/theme-provider';
 import NextTopLoader from 'nextjs-toploader';
+import { cookies } from 'next/headers';
 
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 const APP_DEFAULT_TITLE = `Read manga where you want | ${APP_NAME}`;
@@ -50,10 +51,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       {/* suppressHydrationWarning because of next-themes */}
       <html data-theme='night' lang='en' className={outfit.className} suppressHydrationWarning>
         <body>
-          <NextTopLoader color='red' />
+          <NextTopLoader color='red' showSpinner={false} />
           <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
             <Header />
-            <div className='min-h-screen block'>{children}</div>
+            <div className='min-h-[calc(100vh-280px)] flex flex-col'>{children}</div>
             <Footer />
           </ThemeProvider>
         </body>
