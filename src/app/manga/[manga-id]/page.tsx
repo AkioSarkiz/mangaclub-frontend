@@ -35,13 +35,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 async function page({ params }: Props) {
   const mangaId = params['manga-id'];
 
-  console.log(mangaId);
-
   const { getManga } = useBackend();
 
   const manga = await getManga(mangaId);
-
-  console.log({ manga });
 
   if (!manga) {
     notFound();

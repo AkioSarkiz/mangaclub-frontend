@@ -42,13 +42,13 @@ export const useBackend = (cookies: ReadonlyRequestCookies | undefined = undefin
   const getManga = async (mangaId: string): Promise<Manga> => {
     const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), `/manga/${mangaId}`);
     const response = await fetch(url, {
+      cache: 'no-store',
       headers: {
         ...(cookies?.has('token') ? { Authorization: cookies.get('token')!.value } : {}),
       },
     });
     const { manga } = await response.json();
 
-    
     // Sometimes user can find some 404 pages, so we should care about this case too
     if (manga) {
       // sort chapters
@@ -89,6 +89,7 @@ export const useBackend = (cookies: ReadonlyRequestCookies | undefined = undefin
   const getChapterDetails = async (mangaId: string, chapterId: string): Promise<any> => {
     const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), `/manga/${mangaId}/chapters/${chapterId}`);
     const response = await fetch(url, {
+      cache: 'no-store',
       headers: {
         ...(cookies?.has('token') ? { Authorization: cookies.get('token')!.value } : {}),
       },
