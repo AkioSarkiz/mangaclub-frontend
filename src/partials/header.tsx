@@ -4,17 +4,10 @@ import Link from 'next/link';
 import SearchBar from '@/components/search-bar';
 import { ThemeSwitcher } from '@/components/theme-switcher';
 import { Logo } from '@/partials/logo';
-import { cookies } from 'next/headers';
-import { useBackend } from '@/hooks/useBackend';
 import { SignOut } from '@/partials/signout';
 import SignIn from '@/partials/signin';
 
-export async function Header() {
-  const cookiesStore = cookies();
-
-  const { getCurrentUser } = useBackend(cookiesStore);
-  const currentUser = await getCurrentUser();
-
+export function Header({ currentUser }: { currentUser: any }) {
   const menuItems: { title: string; link: string }[] = [
     { title: 'Home', link: '/' },
     { title: 'History', link: '/history' },

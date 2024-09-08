@@ -10,6 +10,7 @@ import { Footer } from '@/partials/footer';
 import { ThemeProvider } from '@/components/theme-provider';
 import NextTopLoader from 'nextjs-toploader';
 import { cookies } from 'next/headers';
+import { useBackend } from '@/hooks/useBackend';
 
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 const APP_DEFAULT_TITLE = `Read manga where you want | ${APP_NAME}`;
@@ -45,7 +46,12 @@ export const metadata: Metadata = {
 
 const outfit = Outfit({ weight: '400', subsets: ['latin'] });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookiesStore = cookies();
+
+  const { getCurrentUser } = useBackend(cookiesStore);
+  const currentUser = await getCurrentUser();
+
   return (
     <>
       {/* suppressHydrationWarning because of next-themes */}
@@ -53,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body>
           <NextTopLoader color='red' showSpinner={false} />
           <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
-            <Header />
+            <Header currentUser={currentUser} />
             <div className='min-h-[calc(100vh-280px)] flex flex-col'>{children}</div>
             <Footer />
           </ThemeProvider>
