@@ -23,7 +23,7 @@ export interface CatalogPageResponse {
 }
 
 export const useBackend = (cookies: ReadonlyRequestCookies | undefined = undefined) => {
-  const getFeed = async (args: GetFeedArgs): Promise<CompactManga[]> => {
+  const getFeed = async (args: GetFeedArgs = {}): Promise<CompactManga[]> => {
     const url = urlJoin(
       String(process.env.NEXT_PUBLIC_BACKEND_URL),
       `/manga/feed?${args.includeDescription ? 'description=1' : ''}`,

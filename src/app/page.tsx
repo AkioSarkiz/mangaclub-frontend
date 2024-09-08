@@ -25,7 +25,7 @@ export default async function Home() {
   const { getFeed, getChart } = useBackend(cookiesStorage);
 
   const chart = await getChart();
-  const feed = await getFeed({ includeDescription: true });
+  const feed = await getFeed();
 
   return (
     <div>
