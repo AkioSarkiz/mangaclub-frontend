@@ -7,12 +7,7 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
       screens: {
-        // TODO: remove them
-        smp: '480px',
-        bigp: '650px',
-
         '2xl': '1400px',
       },
     },

@@ -4,7 +4,7 @@ export const metadata = {
 
 function DMCA() {
   return (
-    <div className='m-5 bigp:m-10 flex flex-col space-y-5'>
+    <div className='m-5 lg:m-10 flex flex-col space-y-5'>
       <div className='h-20'></div>
       <p className='text-3xl'>DMCA Takedown Request</p>
       <p>

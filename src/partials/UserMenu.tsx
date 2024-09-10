@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 function UserMenu() {
   return (
-    <div className='dropdown dropdown-end bigp:hidden'>
+    <div className='dropdown dropdown-end lg:hidden'>
       <label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
         <div className='w-10 rounded-full'>
           <Image src='/logo/image.png' alt='logo' width='52' height='52' />

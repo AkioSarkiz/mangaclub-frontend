@@ -2,7 +2,7 @@ import { CatalogPagination } from '@/app/browse/partials/pagination';
 import { SearchInput } from '@/app/browse/partials/search';
 import { MangaCard, MangaGrid } from '@/components/manga-card';
 import { useBackend } from '@/hooks/useBackend';
-import { CompactManga } from '@/types';
+import { ICompactManga } from '@/types';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -26,7 +26,7 @@ export default async function BrowsePage(props: any) {
 
       <div>
         <MangaGrid>
-          {catalogPage.items.map((manga: CompactManga) => (
+          {catalogPage.items.map((manga: ICompactManga) => (
             <MangaCard manga={manga} key={manga.id} />
           ))}
         </MangaGrid>

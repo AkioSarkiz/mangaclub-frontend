@@ -1,6 +1,6 @@
 'use client';
 
-import { CompactManga } from '@/types';
+import { ICompactManga } from '@/types';
 import React from 'react';
 import Slider, { Settings } from 'react-slick';
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
@@ -10,7 +10,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
 interface CarouselProps {
-  manga: CompactManga[];
+  manga: ICompactManga[];
 }
 
 function NextArrow(props: React.HTMLProps<SVGElement>) {
@@ -25,7 +25,7 @@ function PrevArrow(props: React.HTMLProps<SVGElement>) {
   return <MdNavigateBefore style={style} className={className} color='black' size={40} onClick={onClick} />;
 }
 
-function MangaBanner({ manga }: { manga: CompactManga }) {
+function MangaBanner({ manga }: { manga: ICompactManga }) {
   return (
     <Card className='rounded-md'>
       <div className='grid grid-cols-1 md:grid-cols-4 gap-1'>

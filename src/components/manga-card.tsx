@@ -2,12 +2,12 @@
 'use client';
 
 import React from 'react';
-import { CompactManga } from '@/types';
+import { ICompactManga } from '@/types';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 type Props = {
-  manga: CompactManga;
+  manga: ICompactManga;
 };
 
 function MangaGrid({ children }: React.PropsWithChildren) {

@@ -4,7 +4,7 @@ export const metadata = {
 
 function TermsOfService() {
   return (
-    <div className='m-5 bigp:m-10 flex flex-col space-y-5'>
+    <div className='m-5 lg:m-10 flex flex-col space-y-5'>
       <p className='text-3xl'>Terms of Service</p>
       <p>
         By using our website, you agree to be bound by the following terms and conditions ("Terms of Service"). If you

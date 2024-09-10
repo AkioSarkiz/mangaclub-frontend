@@ -1,5 +1,4 @@
-import { CompactManga, Manga } from '@/types';
-import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
+import { ICompactManga, IManga, IMangaChapter } from '@/types';
 import urlJoin from 'url-join';
 
 interface GetFeedArgs {
@@ -12,7 +11,7 @@ interface CatalogArgs {
 }
 
 export interface CatalogPageResponse {
-  items: CompactManga[];
+  items: ICompactManga[];
   meta: {
     total: number;
     currentPage: number;
@@ -22,8 +21,12 @@ export interface CatalogPageResponse {
   };
 }
 
-export const useBackend = (cookies: ReadonlyRequestCookies | undefined = undefined) => {
-  const getFeed = async (args: GetFeedArgs = {}): Promise<CompactManga[]> => {
+export const useBackend = (token: string | undefined = undefined) => {
+  const headers = {
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  };
+
+  const getFeed = async (args: GetFeedArgs = {}): Promise<ICompactManga[]> => {
     const url = urlJoin(
       String(process.env.NEXT_PUBLIC_BACKEND_URL),
       `/manga/feed?${args.includeDescription ? 'description=1' : ''}`,
@@ -31,28 +34,24 @@ export const useBackend = (cookies: ReadonlyRequestCookies | undefined = undefin
 
     const response = await fetch(url, {
       cache: 'no-store',
-      headers: {
-        ...(cookies?.has('token') ? { Authorization: cookies.get('token')!.value } : {}),
-      },
+      headers,
     });
 
     return response.json();
   };
 
-  const getManga = async (mangaId: string): Promise<Manga> => {
+  const getManga = async (mangaId: string): Promise<IManga> => {
     const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), `/manga/${mangaId}`);
+
     const response = await fetch(url, {
       cache: 'no-store',
-      headers: {
-        ...(cookies?.has('token') ? { Authorization: cookies.get('token')!.value } : {}),
-      },
+      headers,
     });
+
     const { manga } = await response.json();
 
-    // Sometimes user can find some 404 pages, so we should care about this case too
     if (manga) {
-      // sort chapters
-      manga.chapters = manga.chapters.sort((a: any, b: any) => a.index - b.index);
+      manga.chapters = manga.chapters.sort((a: IMangaChapter, b: IMangaChapter) => a.index + b.index);
     }
 
     return manga;
@@ -78,9 +77,7 @@ export const useBackend = (cookies: ReadonlyRequestCookies | undefined = undefin
 
     const response = await fetch(url, {
       cache: 'no-store',
-      headers: {
-        ...(cookies?.has('token') ? { Authorization: String(cookies.get('token')) } : {}),
-      },
+      headers,
     });
 
     return response.json();
@@ -90,9 +87,7 @@ export const useBackend = (cookies: ReadonlyRequestCookies | undefined = undefin
     const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), `/manga/${mangaId}/chapters/${chapterId}`);
     const response = await fetch(url, {
       cache: 'no-store',
-      headers: {
-        ...(cookies?.has('token') ? { Authorization: cookies.get('token')!.value } : {}),
-      },
+      headers,
     });
 
     return response.json();
@@ -102,9 +97,7 @@ export const useBackend = (cookies: ReadonlyRequestCookies | undefined = undefin
     const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), '/manga/chart');
     const response = await fetch(url, {
       cache: 'no-store',
-      headers: {
-        ...(cookies?.has('token') ? { Authorization: cookies.get('token')!.value } : {}),
-      },
+      headers,
     });
 
     return await response.json();
@@ -114,9 +107,7 @@ export const useBackend = (cookies: ReadonlyRequestCookies | undefined = undefin
     const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), '/users/current');
     const response = await fetch(url, {
       cache: 'no-store',
-      headers: {
-        ...(cookies?.has('token') ? { Authorization: cookies.get('token')!.value } : {}),
-      },
+      headers,
     });
 
     if (response.status !== 200) {
@@ -126,6 +117,54 @@ export const useBackend = (cookies: ReadonlyRequestCookies | undefined = undefin
     return response.json();
   };
 
+  const createMangaFollowedList = async (mangaId: string) => {
+    const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), '/manga-list');
+
+    await fetch(url, {
+      cache: 'no-store',
+      body: JSON.stringify({ mangaId }),
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        ...headers,
+      },
+    });
+  };
+
+  const deleteMangaFollowedList = async (mangaId: string) => {
+    const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), '/manga-list');
+
+    await fetch(url, {
+      cache: 'no-store',
+      body: JSON.stringify({ mangaId }),
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        ...headers,
+      },
+    });
+  };
+
+  const getMangaFollowedList = async () => {
+    const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), '/manga-list/me');
+    const response = await fetch(url, {
+      cache: 'no-store',
+      method: 'GET',
+      headers,
+      next: { revalidate: 0 },
+    });
+
+    try {
+      const { items } = await response.json();
+
+      return items;
+    } catch {
+      return null;
+    }
+  };
+
   return {
     getFeed,
     getManga,
@@ -133,5 +172,8 @@ export const useBackend = (cookies: ReadonlyRequestCookies | undefined = undefin
     getChapterDetails,
     getChart,
     getCurrentUser,
+    createMangaFollowedList,
+    getMangaFollowedList,
+    deleteMangaFollowedList,
   };
 };

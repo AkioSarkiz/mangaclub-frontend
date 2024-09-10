@@ -2,7 +2,7 @@
 
 import { Input } from '@/components/ui/input';
 import { useBackend } from '@/hooks/useBackend';
-import { CompactManga } from '@/types';
+import { ICompactManga } from '@/types';
 import { ComponentProps, useEffect, useRef, useState } from 'react';
 import Loading from '@/components/loading-single';
 import Link from 'next/link';
@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 
 export default function SearchBar() {
   const [searchInput, setSearch] = useState('');
-  const [searchFilter, setSearchFilter] = useState<CompactManga[]>([]);
+  const [searchFilter, setSearchFilter] = useState<ICompactManga[]>([]);
   const [loading, setLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);

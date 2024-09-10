@@ -10,9 +10,9 @@ import SignIn from '@/partials/signin';
 export function Header({ currentUser }: { currentUser: any }) {
   const menuItems: { title: string; link: string }[] = [
     { title: 'Home', link: '/' },
-    { title: 'History', link: '/history' },
     { title: 'Catalog', link: '/browse' },
-    { title: 'Fallow', link: '/fallowed' },
+    { title: 'History', link: '/history' },
+    { title: 'Fallow', link: '/followed' },
   ];
 
   return (

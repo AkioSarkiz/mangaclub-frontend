@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
   const cookiesStorage = cookies();
 
-  const { getFeed, getChart } = useBackend(cookiesStorage);
+  const { getFeed, getChart } = useBackend(cookiesStorage.get('token')?.value);
 
   const chart = await getChart();
   const feed = await getFeed();
@@ -37,7 +37,7 @@ export default async function Home() {
       </div>
 
       <div className='flex justify-center'>
-        <div className='bigp:m-10 mt-10 flex flex-col items-center justify-center'>
+        <div className='lg:m-10 mt-10 flex flex-col items-center justify-center'>
           <PrettyHeader>Recent Updates</PrettyHeader>
 
           <MangaGrid>

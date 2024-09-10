@@ -1,9 +1,9 @@
-export interface MangaFrame {
+export interface IMangaFrame {
   id: number;
   image: string;
 }
 
-export interface CompactManga {
+export interface ICompactManga {
   id: string;
   title: string;
   cover: string;
@@ -11,15 +11,14 @@ export interface CompactManga {
   slug: string;
 }
 
-export interface MangaChapter {
+export interface IMangaChapter {
   id: string;
+  data: string;
   title: string;
-  link: string;
-  name?: string;
   index: number;
 }
 
-export interface Manga {
+export interface IManga {
   id: string;
   title: string;
   cover: string;
@@ -30,5 +29,5 @@ export interface Manga {
   genres: { genre: { name: string; id: string } }[];
   status: string;
 
-  chapters: MangaChapter[];
+  chapters: IMangaChapter[];
 }

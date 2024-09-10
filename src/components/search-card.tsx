@@ -1,9 +1,9 @@
-import { CompactManga } from '@/types';
+import { ICompactManga } from '@/types';
 import Link from 'next/link';
 import React, { ComponentProps } from 'react';
 
 interface SearchCardProps extends ComponentProps<'a'> {
-  manga: CompactManga;
+  manga: ICompactManga;
 }
 
 function SearchCard({ manga, ...props }: SearchCardProps) {

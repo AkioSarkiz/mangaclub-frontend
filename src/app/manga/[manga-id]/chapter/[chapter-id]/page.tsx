@@ -4,6 +4,7 @@ import SideBar from './partials/side-bar';
 import Display from './partials/display';
 import { useBackend } from '@/hooks/useBackend';
 import { notFound } from 'next/navigation';
+import { Sheet } from '@/components/ui/sheet';
 
 type Props = {
   params: {
@@ -36,9 +37,10 @@ async function Page({ params }: Props) {
   }
 
   return (
-    <div className='flex w-full overflow-auto'>
-      <SideBar />
-      <div className='relative z-30 h-full w-full'>
+    // TODO: npx shadcn@latest add breadcrumb
+    <div className='container overflow-y-auto'>
+      <Sheet>Chapter {chapterId}</Sheet>
+      <div>
         <Display frames={frames} />
       </div>
     </div>
