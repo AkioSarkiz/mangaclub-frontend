@@ -3,14 +3,28 @@
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { useBackend } from '@/hooks/useBackend';
+import { ICompactManga } from '@/types';
 import { Loader2, Star } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function FollowButton(props: { mangaId: string; isFollowed: boolean; token: string | undefined }) {
-  const { createMangaFollowedList, deleteMangaFollowedList } = useBackend(props.token);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isFollowed, setIsFollowed] = useState(props.isFollowed);
+export default function FollowButton(props: { mangaId: string; token: string | undefined }) {
   const { toast } = useToast();
+  const { createMangaFollowedList, deleteMangaFollowedList, getMangaFollowedList } = useBackend(props.token);
+
+  const [isFetching, setIsFetching] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFollowed, setIsFollowed] = useState(false);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const mangaFollowedList = await getMangaFollowedList([props.mangaId]);
+
+      setIsFollowed(mangaFollowedList?.some((mangaFollowed: ICompactManga) => mangaFollowed.id === props.mangaId));
+      setIsFetching(false);
+    };
+
+    fetch().then(() => {});
+  });
 
   const fallow = async () => {
     if (!props.token) {
@@ -42,6 +56,10 @@ export default function FollowButton(props: { mangaId: string; isFollowed: boole
         Flout
       </Button>
     );
+  }
+
+  if (isFetching) {
+    return <></>;
   }
 
   return (

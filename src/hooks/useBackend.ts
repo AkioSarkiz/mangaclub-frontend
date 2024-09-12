@@ -147,9 +147,15 @@ export const useBackend = (token: string | undefined = undefined) => {
     });
   };
 
-  const getMangaFollowedList = async () => {
+  const getMangaFollowedList = async (mangaIds: string[] = []) => {
     const url = urlJoin(String(process.env.NEXT_PUBLIC_BACKEND_URL), '/manga-list/me');
-    const response = await fetch(url, {
+
+    const searchParams = new URLSearchParams();
+    searchParams.append('manga-ids', mangaIds.join(','));
+
+    const fullUrl = `${url}?${searchParams.toString()}`;
+
+    const response = await fetch(fullUrl, {
       cache: 'no-store',
       method: 'GET',
       headers,

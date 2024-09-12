@@ -84,12 +84,12 @@ async function page({ params }: Props) {
             </div>
           </div>
           <div className='flex mt-6  gap-1'>
-            {manga.chapters.length && (
-              <Link href={`/manga/${mangaId}/chapter/${manga.chapters[0].index}`}>
+            {manga.chapters.length > 0 && (
+              <Link href={`/manga/${mangaId}/chapter/${manga.chapters[manga.chapters.length - 1].index}`}>
                 <Button>Read first</Button>
               </Link>
             )}
-            <FollowButton token={token} mangaId={manga.id} isFollowed={isFollowed} />
+            <FollowButton token={token} mangaId={manga.id} />
           </div>
           <div className='text-xl font-bold mt-8'>Description</div>
           <p className='text-base my-4'>{manga.description}</p>
