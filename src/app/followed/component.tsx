@@ -102,7 +102,7 @@ export default function FallowPageComponent(props: any) {
                     <Link href={`/manga/${manga.slug}`}>
                       <Button className='w-full sm:w-auto'>Read More</Button>
                     </Link>
-                    <FollowButton isFollowed={true} mangaId={manga.id} token={props.token} />
+                    <FollowButton mangaId={manga.id} token={props.token} />
                   </CardFooter>
                 </div>
               </div>
