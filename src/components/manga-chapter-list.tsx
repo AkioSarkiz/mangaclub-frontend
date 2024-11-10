@@ -8,8 +8,12 @@ import { IMangaChapter } from '@/types';
 export function MangaChaptersList({ chapters, mangaId }: any) {
   const [chapterValue, setChapterValue] = useState<string>('');
 
+  const sortedChapters = useMemo(() => {
+    return chapters.sort((a: IMangaChapter, b: IMangaChapter) => Number(a.index) + Number(b.index));
+  }, [chapters]);
+
   const filteredChapters = useMemo(() => {
-    return chapters.filter((chapter: IMangaChapter) => chapter.title.includes(chapterValue));
+    return sortedChapters.filter((chapter: IMangaChapter) => chapter.title.includes(chapterValue));
   }, [chapterValue]);
 
   return (
