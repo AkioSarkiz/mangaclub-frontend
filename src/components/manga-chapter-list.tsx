@@ -30,7 +30,7 @@ export function MangaChaptersList({ chapters, mangaId }: any) {
         <div className='max-h-[500px] overflow-y-auto'>
           <div className='flex flex-col space-y-4 lg:ml-8 mt-2 w-[50%] mb-8 ml-2'>
             {filteredChapters.map((chapter: IMangaChapter) => (
-              <Link href={`/manga/${mangaId}/chapter/${chapter.index}`} key={chapter.index}>
+              <Link href={`/manga/${mangaId}/chapter/${chapter.index}`} key={`${chapter.index}:${chapter.title}`}>
                 <span className='flex flex-row hover:bg-white/20 dark:text-gray-200 rounded'>
                   <p className='w-[80%] cursor-pointer'>{chapter.title}</p>
                 </span>
