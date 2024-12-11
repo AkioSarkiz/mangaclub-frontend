@@ -67,41 +67,26 @@ export function CatalogPagination({ catalogPage }: Props) {
   return (
     <Pagination>
       <PaginationContent>
-        {catalogPage.meta.prevPage && (
+        {catalogPage.meta.prevPage && links.prevPage && (
           <PaginationItem>
-            <PaginationPrevious
-              //@ts-ignore
-              href={links.prevPage}
-            />
+            <PaginationPrevious href={links.prevPage} />
           </PaginationItem>
         )}
-        {catalogPage.meta.prevPage && (
+        {catalogPage.meta.prevPage && links.prevPage && (
           <PaginationItem>
-            <PaginationLink
-              //@ts-ignore
-              href={links.prevPage}
-            >
-              {catalogPage.meta.prevPage}
-            </PaginationLink>
+            <PaginationLink href={links.prevPage}>{catalogPage.meta.prevPage}</PaginationLink>
           </PaginationItem>
         )}
         <PaginationItem>
-          <PaginationLink
-            //@ts-ignore
-            href={links.currentPage}
-            isActive
-          >
-            {catalogPage.meta.currentPage}
-          </PaginationLink>
-        </PaginationItem>
-        {catalogPage.meta.nextPage && catalogPage.meta.maxPage !== catalogPage.meta.currentPage && (
-          <PaginationItem>
-            <PaginationLink
-              //@ts-ignore
-              href={links.nextPage}
-            >
-              {catalogPage.meta.nextPage}
+          {links.currentPage && (
+            <PaginationLink href={links.currentPage} isActive>
+              {catalogPage.meta.currentPage}
             </PaginationLink>
+          )}
+        </PaginationItem>
+        {catalogPage.meta.nextPage && catalogPage.meta.maxPage !== catalogPage.meta.currentPage && links.nextPage && (
+          <PaginationItem>
+            <PaginationLink href={links.nextPage}>{catalogPage.meta.nextPage}</PaginationLink>
           </PaginationItem>
         )}
         {catalogPage.meta.maxPage !== catalogPage.meta.currentPage &&
@@ -111,22 +96,15 @@ export function CatalogPagination({ catalogPage }: Props) {
             </PaginationItem>
           )}
         {catalogPage.meta.maxPage !== catalogPage.meta.currentPage &&
-          catalogPage.meta.maxPage !== catalogPage.meta.nextPage && (
+          catalogPage.meta.maxPage !== catalogPage.meta.nextPage &&
+          links.maxPage && (
             <PaginationItem>
-              <PaginationLink
-                //@ts-ignore
-                href={links.maxPage}
-              >
-                {catalogPage.meta.maxPage}
-              </PaginationLink>
+              <PaginationLink href={links.maxPage}>{catalogPage.meta.maxPage}</PaginationLink>
             </PaginationItem>
           )}
-        {catalogPage.meta.nextPage && (
+        {catalogPage.meta.nextPage && links.nextPage && (
           <PaginationItem>
-            <PaginationNext
-              //@ts-ignore
-              href={links.nextPage}
-            />
+            <PaginationNext href={links.nextPage} />
           </PaginationItem>
         )}
       </PaginationContent>
