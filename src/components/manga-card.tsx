@@ -5,6 +5,7 @@ import React from 'react';
 import { ICompactManga } from '@/types';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 type Props = {
   manga: ICompactManga;
@@ -18,12 +19,12 @@ function BaseMangaCard({ manga }: Props) {
   return (
     <div className='w-auto lg:max-w-[300px] rounded-lg overflow-hidden shadow-lg dark:shadow-none'>
       <div className='relative'>
-        <img
+        <Image
           src={manga.cover}
           alt='Manga Cover'
           width={300}
-          height={400}
-          className='w-auto lg:w-full h-auto lg:h-[400px] object-cover'
+          height={300}
+          className='h-[300px] lg:h-[400px] object-cover'
         />
         <div className='absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent py-4 px-6'>
           <h3 className='text-lg font-bold text-white truncate'>{manga.title}</h3>

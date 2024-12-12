@@ -1,9 +1,9 @@
-import { Carousel } from '@/components/carousel';
 import { MangaCard, MangaGrid } from '@/components/manga-card';
+import { MangaCarousel } from '@/components/manga-carousel';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ICompactManga } from '@/types';
-import { Link } from 'lucide-react';
+import Link from 'next/link';
 
 export interface HomepageTemplateProps {
   feed: ICompactManga[];
@@ -19,11 +19,12 @@ export const HomepageTemplate = (props: HomepageTemplateProps) => {
 
   return (
     <>
-      <div className='mt-10'>
+      <div className='container mt-10'>
         <div className='text-center'>
           <PrettyHeader>Popular manga</PrettyHeader>
         </div>
-        <Carousel manga={chart} />
+
+        <MangaCarousel chart={chart} />
       </div>
 
       <div className='flex justify-center'>
