@@ -1,7 +1,7 @@
 import { useBackend } from '../hooks/useBackend';
 import { Metadata } from 'next';
 import { cookies } from 'next/headers';
-import { HomepageTemplate } from '@/pages/homepage-template';
+import HomepageTemplate from '@/templates/homepage-template';
 
 export async function generateMetadata(): Promise<Metadata> {
   const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;

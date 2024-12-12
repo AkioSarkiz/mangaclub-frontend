@@ -12,7 +12,7 @@ export interface DetailedMangaTemplateProps {
   token?: string;
 }
 
-export const DetailedMangaTemplate = (props: DetailedMangaTemplateProps) => {
+export default function DetailedMangaTemplate(props: DetailedMangaTemplateProps) {
   const { manga, token, mangaSlug } = props;
 
   return (
@@ -53,4 +53,4 @@ export const DetailedMangaTemplate = (props: DetailedMangaTemplateProps) => {
       <MangaChaptersList chapters={manga.chapters} mangaId={mangaSlug} />
     </div>
   );
-};
+}

@@ -14,7 +14,7 @@ function PrettyHeader(props: React.PropsWithChildren) {
   return <div className='text-3xl mb-10 font-extrabold dark:text-violet-300 tracking-widest'>{props.children}</div>;
 }
 
-export const HomepageTemplate = (props: HomepageTemplateProps) => {
+export default function HomepageTemplate(props: HomepageTemplateProps) {
   const { feed, chart } = props;
 
   return (
@@ -53,4 +53,4 @@ export const HomepageTemplate = (props: HomepageTemplateProps) => {
       </div>
     </>
   );
-};
+}

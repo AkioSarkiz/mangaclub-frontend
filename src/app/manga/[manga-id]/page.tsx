@@ -1,16 +1,9 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { MangaChaptersList } from '@/components/manga-chapter-list';
 import { useBackend } from '@/hooks/useBackend';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { cookies } from 'next/headers';
-import { ICompactManga } from '@/types';
-import FollowButton from '@/components/follow-button';
-import { DetailedMangaTemplate } from '@/pages/manga/detailed-manga-template';
+import DetailedMangaTemplate from '@/templates/manga/detailed-manga-template';
 
 type Props = {
   params: { 'manga-id': string };
