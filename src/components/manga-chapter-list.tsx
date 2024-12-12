@@ -18,7 +18,7 @@ export function MangaChaptersList({ chapters, mangaId }: any) {
 
   return (
     <>
-      <div className='text-xl font-bold pt-4'>Chapters</div>
+      <div className='text-xl font-bold pt-4'>Chapters ({chapters.length})</div>
       <div className='border my-4 rounded-md'>
         <Input
           className='rounded-b-none'

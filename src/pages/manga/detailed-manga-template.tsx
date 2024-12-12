@@ -27,7 +27,7 @@ export const DetailedMangaTemplate = (props: DetailedMangaTemplateProps) => {
             <h1 className='font-outfit font-extrabold text-2xl md:text-4xl line-clamp-2 dark:text-white'>
               {manga.title}
             </h1>
-            <div className='flex flex-wrap w-full md:pt-1 gap-4 justify-center md:justify-start'>
+            <div className='flex flex-wrap w-full md:pt-1 pt-3 gap-4'>
               {/* Show manga type */}
               {manga.type && <Badge className='capitalize'>{manga.type}</Badge>}
               {/* Show manga genres */}
@@ -40,7 +40,7 @@ export const DetailedMangaTemplate = (props: DetailedMangaTemplateProps) => {
           </div>
         </div>
       </div>
-      <div className='flex mt-6  gap-1'>
+      <div className='flex mt-6 gap-1'>
         {manga.chapters.length > 0 && (
           <Link href={`/manga/${mangaSlug}/chapter/${manga.chapters[manga.chapters.length - 1].index}`}>
             <Button>Read first</Button>
