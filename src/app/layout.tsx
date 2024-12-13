@@ -1,7 +1,5 @@
 // CSS Imports
 import './globals.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 import { Outfit } from 'next/font/google';
 import { Metadata } from 'next';
@@ -14,6 +12,7 @@ import { useBackend } from '@/hooks/useBackend';
 import { Toaster } from '@/components/ui/toaster';
 import Script from 'next/script';
 import UmamiTracker from '@/components/umami-tracker';
+import { Provider as JotaiProvider } from 'jotai';
 
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 const APP_DEFAULT_TITLE = `Read manga where you want | ${APP_NAME}`;
@@ -60,15 +59,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       {/* suppressHydrationWarning because of next-themes */}
       <html data-theme='night' lang='en' className={outfit.className} suppressHydrationWarning>
         <body>
-          <UmamiTracker />
+          <JotaiProvider>
+            <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+              <UmamiTracker />
+              <NextTopLoader color='red' showSpinner={false} />
+              <Toaster />
 
-          <Toaster />
-          <NextTopLoader color='red' showSpinner={false} />
-          <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
-            <Header currentUser={currentUser} />
-            <main className='min-h-[calc(100vh-280px)] flex flex-col'>{children}</main>
-            <Footer />
-          </ThemeProvider>
+              <Header currentUser={currentUser} />
+              <main className='min-h-[calc(100vh-280px)] flex flex-col'>{children}</main>
+              <Footer />
+            </ThemeProvider>
+          </JotaiProvider>
         </body>
       </html>
     </>

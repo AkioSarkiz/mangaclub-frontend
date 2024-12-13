@@ -1,12 +1,9 @@
 import React from 'react';
 import { Metadata } from 'next';
-import Display from './partials/display';
 import { useBackend } from '@/hooks/useBackend';
 import { notFound } from 'next/navigation';
-import { Sheet } from '@/components/ui/sheet';
-import ChapterPageButtons from '@/app/manga/[manga-id]/chapter/[chapter-id]/partials/next-chapter-page-button';
 import { IMangaChapter } from '@/types';
-import ScrollToTop from '@/app/manga/[manga-id]/chapter/[chapter-id]/partials/scroll-top';
+import MangaReaderTemplate from '@/templates/manga-reader/manga-reader-template';
 
 type Props = {
   params: {
@@ -32,27 +29,23 @@ async function Page({ params }: Props) {
 
   const { getChapterDetails, getManga } = useBackend();
 
-  const manga = await getManga(mangaId);
-  const { frames } = await getChapterDetails(mangaId, chapterId);
+  const [manga, chapter] = await Promise.all([getManga(mangaId), getChapterDetails(mangaId, chapterId)]);
 
-  if (!frames) {
+  if (!chapter?.frames || !manga) {
     notFound();
   }
 
-  const nextChapterId = manga.chapters.find((chapter: IMangaChapter) => chapter.index === Number(chapterId) + 1)?.index;
-  const prevChapterId = manga.chapters.find((chapter: IMangaChapter) => chapter.index === Number(chapterId) - 1)?.index;
+  const nextChapterId = manga.chapters.find((v: IMangaChapter) => Number(v.index) === Number(chapter.index) + 1)?.index;
+  const prevChapterId = manga.chapters.find((v: IMangaChapter) => Number(v.index) === Number(chapter.index) - 1)?.index;
 
   return (
-    // TODO: npx shadcn@latest add breadcrumb
-    <div className='container overflow-y-auto'>
-      <ScrollToTop />
-
-      <Sheet>Chapter {chapterId}</Sheet>
-      <div>
-        <Display frames={frames} />
-        <ChapterPageButtons mangaId={mangaId} nextChapterIndex={nextChapterId} prevChapterIndex={prevChapterId} />
-      </div>
-    </div>
+    <MangaReaderTemplate
+      mangaId={mangaId}
+      chapterIndex={chapter.index}
+      frames={chapter.frames}
+      nextChapterId={nextChapterId}
+      prevChapterId={prevChapterId}
+    />
   );
 }
 export default Page;
