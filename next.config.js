@@ -1,4 +1,5 @@
 const backendUrl = new URL(String(process.env.NEXT_PUBLIC_BACKEND_URL))
+const proxyServer = new URL(String(process.env.NEXT_PUBLIC_APP_PROXY_URL))
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -7,6 +8,12 @@ const nextConfig = {
       {
         protocol: backendUrl.protocol.substr(0, backendUrl.protocol.length - 1),
         hostname: backendUrl.hostname,
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: proxyServer.protocol.substr(0, proxyServer.protocol.length - 1),
+        hostname: proxyServer.hostname,
         port: '',
         pathname: '/**',
       },
